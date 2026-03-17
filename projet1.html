@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Proxmox Backup Server - Portfolio Gaëtan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="index.html">⬅ Retour à l'accueil</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" style="margin-top: 50px;">
+        <h2>Projet 1 : Déploiement d'un Proxmox Backup Server (PBS)</h2>
+        <p><strong>Cadre :</strong> Projet de spécialité SISR (Épreuve E4)</p>
+        <hr style="margin: 20px 0;">
+        
+        <h3>Contexte et Objectifs</h3>
+        <p>Dans le cadre de la sécurisation d'une infrastructure virtualisée sous Proxmox VE, l'objectif de ce projet était de mettre en place une solution de sauvegarde centralisée et optimisée. J'ai choisi de déployer <strong>Proxmox Backup Server (PBS)</strong> pour garantir la sauvegarde et la restauration rapide des machines virtuelles (VM) et des conteneurs (CT).</p>
+        <br>
+
+        <h3>Environnement Technique</h3>
+        <ul>
+            <li><strong>Hyperviseur :</strong> Proxmox Virtual Environment (PVE)</li>
+            <li><strong>Serveur de sauvegarde :</strong> Proxmox Backup Server (PBS)</li>
+            <li><strong>Réseau :</strong> Configuration IP statique, liaison réseau dédiée aux sauvegardes.</li>
+        </ul>
+        <br>
+
+        <h3>Étapes de réalisation</h3>
+        <ul>
+            <li><strong>Installation :</strong> Déploiement de l'OS Proxmox Backup Server sur une machine dédiée (ou en VM isolée).</li>
+            <li><strong>Configuration du stockage :</strong> Création et formatage des Datastores (ZFS/Ext4) pour accueillir les sauvegardes.</li>
+            <li><strong>Liaison PVE / PBS :</strong> Ajout du serveur PBS comme espace de stockage sur le cluster Proxmox VE via l'échange de clés d'authentification.</li>
+            <li><strong>Automatisation :</strong> Création de tâches planifiées (Backup Jobs) pour sauvegarder les VM toutes les nuits.</li>
+            <li><strong>Gestion de la rétention :</strong> Configuration des règles de nettoyage (Prune) pour ne garder que les X dernières sauvegardes et optimiser l'espace disque (déduplication).</li>
+            <li><strong>Tests :</strong> Simulation d'un crash et restauration réussie d'une VM complète.</li>
+        </ul>
+        <br>
+
+        <h3>Compétences SIO mobilisées</h3>
+        <ul>
+            <li>Mettre en place une solution de sauvegarde et de restauration.</li>
+            <li>Administrer des systèmes (Linux, Proxmox).</li>
+            <li>Gérer le patrimoine informatique.</li>
+        </ul>
+        
+        <br>
+        <a href="index.html" class="btn btn-secondary">Retour à l'accueil</a>
+    </section>
+
+</body>
+</html>

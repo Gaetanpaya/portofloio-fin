@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Architecture Réseau Cisco - Portfolio Gaëtan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="index.html">⬅ Retour à l'accueil</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" style="margin-top: 50px;">
+        <h2>Projet 2 : Architecture Réseau Sécurisée (VLANs & Routage)</h2>
+        <p><strong>Cadre :</strong> Projet de spécialité SISR (Épreuve E4)</p>
+        <hr style="margin: 20px 0;">
+        
+        <h3>Contexte et Objectifs</h3>
+        <p>Ce projet consistait à concevoir et déployer une architecture réseau segmentée et sécurisée pour une entreprise fictive. L'objectif était de séparer les flux de données entre les différents services (Administration, Production, Serveurs) pour des raisons de sécurité et de performances.</p>
+        <br>
+
+        <h3>Environnement Technique</h3>
+        <ul>
+            <li><strong>Matériel / Logiciel :</strong> Switchs Cisco (ex: 2960), Routeurs Cisco, Simulateur Cisco Packet Tracer (ou GNS3 / matériel physique).</li>
+            <li><strong>Protocoles :</strong> 802.1Q (Trunking), routage inter-VLAN, DHCP.</li>
+        </ul>
+        <br>
+
+        <h3>Étapes de réalisation</h3>
+        <ul>
+            <li><strong>Plan d'adressage IP :</strong> Conception du plan d'adressage IPv4 pour chaque sous-réseau avec calcul des masques appropriés (/24).</li>
+            <li><strong>Configuration des Switchs :</strong> Création des VLANs (ex: VLAN 10 Admin, VLAN 20 Prod) et affectation des ports (Access mode).</li>
+            <li><strong>Liaisons Trunk :</strong> Configuration des liens entre les switchs (Trunk 802.1Q) pour laisser passer le trafic de plusieurs VLANs.</li>
+            <li><strong>Routage Inter-VLAN :</strong> Configuration du routeur Cisco (méthode "Router-on-a-stick") avec création de sous-interfaces pour permettre la communication entre les VLANs si nécessaire.</li>
+            <li><strong>Sécurité de base :</strong> Mise en place de mots de passe (enable secret, vty, console) et configuration de la sécurité des ports (Port Security) pour empêcher les branchements non autorisés.</li>
+        </ul>
+        <br>
+
+        <h3>Compétences SIO mobilisées</h3>
+        <ul>
+            <li>Concevoir une solution d'infrastructure réseau.</li>
+            <li>Administrer des équipements réseaux (Cisco IOS).</li>
+            <li>Sécuriser les accès à un réseau.</li>
+        </ul>
+        
+        <br>
+        <a href="index.html" class="btn btn-secondary">Retour à l'accueil</a>
+    </section>
+
+</body>
+</html>
