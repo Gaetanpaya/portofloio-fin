@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Certifications - Portfolio Gaëtan</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Style pour l'affichage des images de certificats */
+        .certif-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .certif-img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #34495e;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .certif-img:hover {
+            transform: scale(1.02); /* Petit effet de zoom au survol */
+        }
+        .certif-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 10px;
+            display: block;
+        }
+    </style>
 </head>
 <body>
 
@@ -21,19 +46,8 @@
             Ces certifications valident mes connaissances théoriques et pratiques sur des outils et des normes spécifiques au monde de l'entreprise.
         </p>
 
-        <div class="grid">
-            <div class="card">
-                <h3 style="color: #2c3e50;">SecNumAcadémie (ANSSI)</h3>
-                <p style="color: #3498db; font-weight: bold; margin-bottom: 10px;">Validée le : [Date]</p>
-                <p>Certification de sensibilisation à la cybersécurité délivrée par l'Agence Nationale de la Sécurité des Systèmes d'Information.</p>
-                <ul style="text-align: left;">
-                    <li>Authentification & Mots de passe</li>
-                    <li>Sécurité sur Internet</li>
-                    <li>Sécurité du poste de travail</li>
-                </ul>
-            </div>
-
-            <div class="card">
+        <div class="grid" style="display: flex; justify-content: center;">
+            <div class="card" style="max-width: 500px;">
                 <h3 style="color: #2c3e50;">Certification PIX</h3>
                 <p style="color: #3498db; font-weight: bold; margin-bottom: 10px;">Score : [Ton score] Pix</p>
                 <p>Attestation des compétences numériques transversales reconnue par l'État et le monde professionnel.</p>
@@ -43,23 +57,16 @@
                     <li>Communication et collaboration</li>
                 </ul>
             </div>
+        </div>
 
-            <div class="card">
-                <h3 style="color: #2c3e50;">Cisco Networking Academy</h3>
-                <p style="color: #3498db; font-weight: bold; margin-bottom: 10px;">Introduction to Networks</p>
-                <p>Validation des bases de l'architecture réseau, du routage et de la commutation sur équipements Cisco.</p>
-                <ul style="text-align: left;">
-                    <li>Modèle OSI & TCP/IP</li>
-                    <li>Configuration de switchs et routeurs</li>
-                    <li>Adressage IPv4 et IPv6</li>
-                </ul>
-            </div>
+        <div class="certif-container">
+            <h3 style="margin-top: 40px; color: #2c3e50;">Visualisation des Attestations</h3>
+            
+            <div style="max-width: 800px; margin: 20px auto;">
+                <span class="certif-title">Attestation PIX</span>
+                <img src="certifpix.png" alt="Attestation PIX" class="certif-img">
 
-            <div class="card">
-                <h3 style="color: #2c3e50;">Atelier RGPD (CNIL)</h3>
-                <p style="color: #3498db; font-weight: bold; margin-bottom: 10px;">En cours / Validée</p>
-                <p>Formation sur le Règlement Général sur la Protection des Données pour comprendre les enjeux de la vie privée en informatique.</p>
-            </div>
+                </div>
         </div>
 
         <br><br>
