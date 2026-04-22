@@ -3,8 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Proxmox Backup Server - Portfolio Gaëtan</title>
+    <title>Projet M2L - Portfolio Gaëtan</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles partagés pour les tableaux */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 0.95rem;
+        }
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .data-table th {
+            background-color: #2c3e50;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .data-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        .table-total {
+            background-color: #1a252f;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+        .table-total td {
+            color: #fff; /* Force la couleur blanche pour le texte des totaux */
+        }
+    </style>
 </head>
 <body>
 
@@ -16,43 +49,233 @@
     </nav>
 
     <section class="section" style="margin-top: 50px;">
-        <h2>Projet 1 : Déploiement d'un Proxmox Backup Server (PBS)</h2>
-        <p><strong>Cadre :</strong> Projet de spécialité SISR (Épreuve E4)</p>
+        <h2>Projet 1 : Conception de l'infrastructure réseau (M2L)</h2>
+        <p><strong>Cadre :</strong> Projet de spécialité SISR (Épreuve E4) - Maison des Ligues de Lorraine</p>
         <hr style="margin: 20px 0;">
         
         <h3>Contexte et Objectifs</h3>
-        <p>Dans le cadre de la sécurisation d'une infrastructure virtualisée sous Proxmox VE, l'objectif de ce projet était de mettre en place une solution de sauvegarde centralisée et optimisée. J'ai choisi de déployer <strong>Proxmox Backup Server (PBS)</strong> pour garantir la sauvegarde et la restauration rapide des machines virtuelles (VM) et des conteneurs (CT).</p>
+        <p>La Maison des Ligues (M2L) nécessite une refonte complète de son infrastructure informatique pour accueillir de nouveaux collaborateurs et moderniser ses équipements. Mon rôle dans ce projet a été de concevoir l'architecture réseau de A à Z : calcul des longueurs de câblage, dimensionnement des équipements actifs (switchs, bornes Wi-Fi, téléphonie IP) et réalisation d'un budget prévisionnel (devis).</p>
         <br>
 
         <h3>Environnement Technique</h3>
         <ul>
-            <li><strong>Hyperviseur :</strong> Proxmox Virtual Environment (PVE)</li>
-            <li><strong>Serveur de sauvegarde :</strong> Proxmox Backup Server (PBS)</li>
-            <li><strong>Réseau :</strong> Configuration IP statique, liaison réseau dédiée aux sauvegardes.</li>
+            <li><strong>Équipements actifs :</strong> Switchs Cisco Catalyst 1300, Bornes Wi-Fi Ubiquiti/Omada, Modules SFP.</li>
+            <li><strong>Postes clients :</strong> PC ASUS, Téléphonie Cisco IP Phone.</li>
+            <li><strong>Infrastructures physiques :</strong> Câblage structuré Catégorie 6/7, Baies de brassage.</li>
         </ul>
         <br>
 
         <h3>Étapes de réalisation</h3>
         <ul>
-            <li><strong>Installation :</strong> Déploiement de l'OS Proxmox Backup Server sur une machine dédiée (ou en VM isolée).</li>
-            <li><strong>Configuration du stockage :</strong> Création et formatage des Datastores (ZFS/Ext4) pour accueillir les sauvegardes.</li>
-            <li><strong>Liaison PVE / PBS :</strong> Ajout du serveur PBS comme espace de stockage sur le cluster Proxmox VE via l'échange de clés d'authentification.</li>
-            <li><strong>Automatisation :</strong> Création de tâches planifiées (Backup Jobs) pour sauvegarder les VM toutes les nuits.</li>
-            <li><strong>Gestion de la rétention :</strong> Configuration des règles de nettoyage (Prune) pour ne garder que les X dernières sauvegardes et optimiser l'espace disque (déduplication).</li>
-            <li><strong>Tests :</strong> Simulation d'un crash et restauration réussie d'une VM complète.</li>
+            <li><strong>Audit physique :</strong> Analyse des plans du bâtiment pour déterminer l'emplacement des prises réseau et des bornes Wi-Fi.</li>
+            <li><strong>Étude du câblage :</strong> Calcul précis des longueurs de rocades et de câbles (cuivre et fibre) pour relier les bureaux aux locaux techniques.</li>
+            <li><strong>Choix technologiques :</strong> Sélection du matériel réseau répondant aux exigences de débit, de sécurité et de budget de la M2L.</li>
+            <li><strong>Chiffrage financier :</strong> Rédaction d'un devis complet incluant le matériel informatique, réseau et les accessoires.</li>
         </ul>
         <br>
 
+        <div style="background-color: #f8f9fa; padding: 30px; border-radius: 10px; border: 1px solid #e0e0e0; margin-bottom: 40px;">
+            
+            <h3 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">📐 Étape 1 : Calcul du câblage par bureau</h3>
+            <p>Afin d'estimer les tourets de câbles à commander, j'ai réalisé ce tableau listant chaque zone, le nombre de prises nécessaires et les distances jusqu'à la baie de brassage (incluant une marge de sécurité de 10% pour les passages dans les faux plafonds et goulottes).</p>
+            
+            <div style="overflow-x: auto; margin-bottom: 40px;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Zone / Bureau</th>
+                            <th>Nb de prises (RJ45)</th>
+                            <th>Distance unitaire vers baie</th>
+                            <th>Marge de sécurité (+10%)</th>
+                            <th>Longueur totale par zone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Accueil / Secrétariat</td>
+                            <td>6</td>
+                            <td>15 m</td>
+                            <td>1.5 m</td>
+                            <td>99 m</td>
+                        </tr>
+                        <tr>
+                            <td>Bureaux Direction</td>
+                            <td>8</td>
+                            <td>25 m</td>
+                            <td>2.5 m</td>
+                            <td>220 m</td>
+                        </tr>
+                        <tr>
+                            <td>Service Comptabilité</td>
+                            <td>16</td>
+                            <td>35 m</td>
+                            <td>3.5 m</td>
+                            <td>616 m</td>
+                        </tr>
+                        <tr>
+                            <td>Open Space 1 (Ligues)</td>
+                            <td>50</td>
+                            <td>45 m</td>
+                            <td>4.5 m</td>
+                            <td>2 475 m</td>
+                        </tr>
+                        <tr>
+                            <td>Open Space 2 (Ligues)</td>
+                            <td>40</td>
+                            <td>20 m</td>
+                            <td>2.0 m</td>
+                            <td>880 m</td>
+                        </tr>
+                        <tr>
+                            <td>Salles de réunion</td>
+                            <td>12</td>
+                            <td>12 m</td>
+                            <td>1.2 m</td>
+                            <td>158 m</td>
+                        </tr>
+                        <tr>
+                            <td>Bornes Wi-Fi (Plafond)</td>
+                            <td>4</td>
+                            <td>25 m</td>
+                            <td>2.5 m</td>
+                            <td>110 m</td>
+                        </tr>
+                        <tr class="table-total">
+                            <td colspan="4" style="text-align: right;">Total estimé (Mètres de câble) :</td>
+                            <td>4 558 m</td>
+                        </tr>
+                        <tr class="table-total" style="background-color: #27ae60;">
+                            <td colspan="4" style="text-align: right;">Bobines de 500m à commander :</td>
+                            <td>10 Bobines</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">💶 Étape 2 : Devis estimatif des équipements</h3>
+            <p>Voici le chiffrage mis à jour des équipements nécessaires au déploiement du nouveau réseau de la M2L :</p>
+            
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Description</th>
+                            <th>Qté</th>
+                            <th>Prix unitaire HT</th>
+                            <th>Prix total HT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PC</td>
+                            <td>ASUS ExpertCenter D5 SFF</td>
+                            <td>100</td>
+                            <td>615,00 €</td>
+                            <td>61 500,00 €</td>
+                        </tr>
+                        <tr>
+                            <td>Téléphone VOIP</td>
+                            <td>Cisco IP Phone 7811</td>
+                            <td>40</td>
+                            <td>89,50 €</td>
+                            <td>3 580,00 €</td>
+                        </tr>
+                        <tr>
+                            <td>Borne Wifi</td>
+                            <td>Ubiquiti UniFi U6-LR</td>
+                            <td>4</td>
+                            <td>195,00 €</td>
+                            <td>780,00 €</td>
+                        </tr>
+                        <tr>
+                            <td>Câble RJ45</td>
+                            <td>Bobine Câble Réseau CAT 7 500m</td>
+                            <td>10</td>
+                            <td>385,00 €</td>
+                            <td>3 850,00 €</td>
+                        </tr>
+                        <tr>
+                            <td>Contrôleur Wifi</td>
+                            <td>TP-LINK Omada OC200</td>
+                            <td>4</td>
+                            <td>105,00 €</td>
+                            <td>420,00 €</td>
+                        </tr>
+                        <tr>
+                            <td>Écrans</td>
+                            <td>AOC 27" LED</td>
+                            <td>100</td>
+                            <td>110,00 €</td>
+                            <td>11 000,00 €</td>
+                        </tr>
+                        <tr>
+                            <td>Claviers/Souris</td>
+                            <td>Logitech Wireless Desktop</td>
+                            <td>100</td>
+                            <td>28,50 €</td>
+                            <td>2 850,00 €</td>
+                        </tr>
+                        <tr>
+                            <td>Module SFP</td>
+                            <td>TP-LINK TL-SM5310-T</td>
+                            <td>3</td>
+                            <td>62,00 €</td>
+                            <td>186,00 €</td>
+                        </tr>
+                        <tr>
+                            <td>Switch</td>
+                            <td>Cisco Catalyst 1300 48 ports</td>
+                            <td>3</td>
+                            <td>1 450,00 €</td>
+                            <td>4 350,00 €</td>
+                        </tr>
+                        <tr>
+                            <td>Baie de brassage</td>
+                            <td>Panneau 48 ports cat 6</td>
+                            <td>4</td>
+                            <td>115,00 €</td>
+                            <td>460,00 €</td>
+                        </tr>
+                        <tr class="table-total">
+                            <td colspan="4" style="text-align: right;">Total général HT :</td>
+                            <td>88 976,00 €</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <h3>Compétences SIO mobilisées</h3>
         <ul>
-            <li>Mettre en place une solution de sauvegarde et de restauration.</li>
-            <li>Administrer des systèmes (Linux, Proxmox).</li>
-            <li>Gérer le patrimoine informatique.</li>
+            <li>Analyser les objectifs et les modalités d'organisation d'un projet.</li>
+            <li>Concevoir une solution d'infrastructure réseau.</li>
+            <li>Gérer le patrimoine informatique et évaluer les coûts.</li>
         </ul>
         
-        <br>
-        <a href="index.html" class="btn btn-secondary">Retour à l'accueil</a>
+        <br><br>
+        <div style="text-align: center;">
+            <a href="index.html" class="btn btn-secondary">Retour à l'accueil</a>
+        </div>
     </section>
+
+    <footer>
+        <p>&copy; 2026 - PAYA BELESCOT Gaëtan - Portfolio BTS SIO SISR</p>
+    </footer>
+
+    <script>
+        const stickers = ['💻', '🖥️', '💾', '⚙️', '🚀', '🛡️', '🛠️', '🌐', '🔋'];
+        document.addEventListener('click', function(e) {
+            const sticker = document.createElement('div');
+            sticker.classList.add('it-sticker');
+            const randomSticker = stickers[Math.floor(Math.random() * stickers.length)];
+            sticker.innerText = randomSticker;
+            sticker.style.left = (e.pageX - 15) + 'px';
+            sticker.style.top = (e.pageY - 15) + 'px';
+            document.body.appendChild(sticker);
+            setTimeout(() => { sticker.remove(); }, 1000);
+        });
+    </script>
 
 </body>
 </html>
