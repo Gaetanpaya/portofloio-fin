@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procédure Centreon - Portfolio Gaëtan</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .doc-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .doc-section h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2980b9;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2980b9;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            border-left: 3px solid #2980b9;
+            padding-left: 10px;
+        }
+        .doc-img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #34495e;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .img-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .img-caption {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+        .highlight-box {
+            background-color: #ebf5fb;
+            border-left: 4px solid #2980b9;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            border-left: 4px solid #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="projet2.html">⬅ Retour au Projet CUB</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" style="margin-top: 50px;">
+        <h2 style="color: #2c3e50; text-align: center;">DOCUMENTATION TECHNIQUE : SUPERVISION AVEC CENTREON</h2>
+        <p style="text-align: center; color: #555; max-width: 700px; margin: 0 auto 40px;">
+            <strong>Projet :</strong> Monitoring proactif de l'infrastructure CUB<br>
+            <strong>Équipement :</strong> Serveur Centreon (Debian 12)<br>
+            <strong>Date :</strong> année 2025-2026
+        </p>
+
+        <div class="doc-section">
+            <h3>I. DÉPLOIEMENT DU SERVEUR CENTREON (CLI)</h3>
+            <p>L'installation a été réalisée de bout en bout sur une machine virtuelle fonctionnant sous Debian 12 en ligne de commande.</p>
+
+            <p class="step-title">Étape 1 : Pré-installation et dépendances</p>
+            <p>Installation des paquets requis et ajout du dépôt MariaDB 10.11 :</p>
+            <div class="img-container">
+                <img src="instal.png" alt="Installation des dépendances" class="doc-img">
+            </div>
+
+            <p>Ajout des dépôts Centreon Standard et Plugins, et importation de la clé GPG :</p>
+            <div class="img-container">
+                <img src="ajout.png" alt="Ajout des dépôts Centreon" class="doc-img">
+            </div>
+
+            <p class="step-title">Étape 2 : Installation de Centreon et MariaDB</p>
+            <p>Installation du serveur Centreon et de la base de données locale :</p>
+            <div class="img-container">
+                <img src="instaaapng.png" alt="Installation de Centreon via APT" class="doc-img">
+            </div>
+
+            <p>Sécurisation obligatoire du compte root de la base de données :</p>
+            <div class="img-container">
+                <img src="maria.png" alt="Sécurisation de MariaDB" class="doc-img">
+            </div>
+            
+            <p>Pour finaliser cette partie système, les services (`apache2`, `mariadb`, `php-fpm`, etc.) ont été activés pour se lancer automatiquement au démarrage.</p>
+        </div>
+
+        <div class="doc-section">
+            <h3>II. CONFIGURATION WEB DE CENTREON</h3>
+            <p>Une fois le serveur web Apache démarré, la configuration se poursuit via l'interface graphique en accédant à `http://<IP>/centreon`.</p>
+
+            <p class="step-title">Vérification et Moteur de supervision</p>
+            <div class="img-container">
+                <img src="installcent.png" alt="Étapes 1 et 2 de l'installation Web" class="doc-img">
+            </div>
+            <div class="img-container">
+                <img src="cent.png" alt="Étapes 3 et 4 de l'installation Web" class="doc-img">
+            </div>
+
+            <p class="step-title">Comptes et Base de données</p>
+            <div class="img-container">
+                <img src="admince.png" alt="Création du compte Admin" class="doc-img">
+            </div>
+            <div class="img-container">
+                <img src="configbase.png" alt="Configuration de la base de données" class="doc-img">
+            </div>
+
+            <p class="step-title">Finalisation et Modules</p>
+            <div class="img-container">
+                <img src="module.png" alt="Installation des modules Centreon" class="doc-img">
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Initialisation :</strong> Après l'installation Web, il a fallu exporter la configuration depuis le menu Collecteurs et redémarrer les démons principaux (`cbd`, `centengine`, `gorgoned`) sur le serveur pour lancer la supervision.
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h3>III. VUE D'ENSEMBLE DE LA SUPERVISION</h3>
+            <p>La communication entre le serveur Centreon et les équipements surveillés se fait via le protocole <strong>SNMP.</strong> 
+            
+            <p class="step-title">ajout d'extension</p>
+            <div class="img-container">
+                <img src="extension.png" alt="Statut des hôtes Centreon" class="doc-img">
+                <p class="img-caption">Vue globale des hôtes (Hosts Status) - Tous les équipements sont surveillés</p>
+            </div>
+
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="projet2.html" class="btn btn-secondary">Retour au Projet CUB</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - PAYA BELESCOT Gaëtan - Portfolio BTS SIO SISR</p>
+    </footer>
+
+</body>
+</html>

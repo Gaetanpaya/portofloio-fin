@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procédure Pare-feu Stormshield - Portfolio Gaëtan</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .doc-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .doc-section h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e67e22; /* Orange Stormshield */
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #e67e22;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+        .doc-img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #34495e;
+            border-radius: 5px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .img-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+        .img-caption {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+        .highlight-box {
+            background-color: #fdf2e9;
+            border-left: 4px solid #e67e22;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="projet2.html">⬅ Retour au Projet CUB</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" style="margin-top: 50px;">
+        <h2 style="color: #2c3e50; text-align: center;">DOCUMENTATION TECHNIQUE : SÉCURISATION VIA PARE-FEU STORMSHIELD (SNS)</h2>
+        <p style="text-align: center; color: #555; max-width: 700px; margin: 0 auto 40px;">
+            <strong>Projet :</strong> Filtrage applicatif et protection périmétrique CUB<br>
+            <strong>Équipement :</strong> Stormshield Network Security (SNS)<br>
+            <strong>Date :</strong> Avril 2026
+        </p>
+
+        <div class="doc-section">
+            <h3>I. PRÉSENTATION DE LA SOLUTION</h3>
+            <p>La sécurité de l'infrastructure Ingolstadt est assurée par un pare-feu <strong>Stormshield</strong>. Contrairement à un pare-feu classique, Stormshield intègre une analyse IPS (Intrusion Prevention System) sur chaque flux afin de détecter et bloquer les comportements malveillants en temps réel.</p>
+        </div>
+
+        <div class="doc-section">
+            <h3>II. POLITIQUE DE FILTRAGE (SLOTTING)</h3>
+            <p>La configuration est basée sur une politique de "Whitelist" : tout flux non autorisé est implicitement bloqué. Les règles sont organisées par sections pour une meilleure lisibilité.</p>
+            
+            <p class="step-title">1. Accès Administration et Web</p>
+            <p>Les règles autorisent l'accès sécurisé (HTTPS) vers l'extérieur pour les réseaux internes, ainsi que l'administration du pare-feu lui-même.</p>
+            
+            <div class="img-container">
+                <img src="regles https.png" alt="Règles de filtrage Stormshield 1" class="doc-img">
+                <p class="img-caption">Section 1 & 2 : Autorisations vers Internet et flux métiers (DHCP, ICMP)</p>
+            </div>
+
+            <p class="step-title">2. Services Réseau (DNS & Monitoring)</p>
+            <p>Une section spécifique est dédiée au protocole DNS, assurant la communication entre les résolveurs internes et les serveurs autoritaires, ainsi qu'Internet.</p>
+
+            <div class="img-container">
+                <img src="regledns.png" alt="Règles de filtrage Stormshield 2" class="doc-img">
+                <p class="img-caption">Section DNS et Supervision (Centreon via SNMP/HTTPS)</p>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h3>III. ANALYSE DES RÈGLES CLÉS</h3>
+           <div class="highlight-box">
+                <strong>Règle 3 (DHCP) :</strong> Autorise le trafic lié à l'attribution dynamique des adresses IP (port bootpc) vers le réseau interne.
+            </div>
+            <div class="img-container">
+                <img src="regle3.png" alt="Détail règle DHCP" class="doc-img">
+                <p class="img-caption">Capture de la règle n°3 gérant le trafic DHCP</p>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Règle 6 (Web) :</strong> Permet aux réseaux internes (Network_internals) d'accéder au web via les ports 80 (HTTP) et 443 (HTTPS).
+            </div>
+            <div class="img-container">
+                <img src="regle6.png" alt="Détail règle Web HTTPS" class="doc-img">
+                <p class="img-caption">Capture de la règle autorisant la navigation Web sécurisée</p>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Règle 12 (Supervision) :</strong> Autorise le serveur Centreon à interroger les équipements via SNMP et à accéder à leurs interfaces de gestion en HTTPS/SSH.
+            </div>
+            <div class="img-container">
+                <img src="regle12.png" alt="Détail règle Supervision" class="doc-img">
+                <p class="img-caption">Capture de la règle autorisant le flux de monitoring pour Centreon</p>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h3>IV. PROTECTION IPS & LOGS</h3>
+            <p>Chaque règle active une inspection de sécurité avancée. En cas de détection d'une attaque (ex: scan de ports, injection), le Stormshield bloque automatiquement l'IP source et génère une alerte dans les logs de monitoring.</p>
+            <p style="color: #e67e22; font-weight: bold; text-align: center;">✅ L'infrastructure est protégée et le routage inter-VLAN est sécurisé.</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="projet2.html" class="btn btn-secondary">Retour au Projet CUB</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - PAYA BELESCOT Gaëtan - Portfolio BTS SIO SISR</p>
+    </footer>
+
+</body>
+</html>

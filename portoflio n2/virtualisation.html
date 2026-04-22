@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compétences Virtualisation - Portfolio Gaëtan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="index.html">⬅ Retour à l'accueil</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" style="margin-top: 50px;">
+        <h2>☁️ Virtualisation & Services</h2>
+        <p style="max-width: 800px; margin: 0 auto 40px; font-size: 1.1rem; color: #555;">
+            La virtualisation permet d'optimiser les coûts matériels et de simplifier l'administration. J'ai appris à déployer et gérer des machines virtuelles (VMs) et des conteneurs, tout en assurant la supervision et la sauvegarde des services critiques de l'entreprise.
+        </p>
+
+        <div class="grid">
+            <div class="card" style="border-top: 5px solid #e67e22;">
+                <h3 style="color: #e67e22; font-size: 1.6rem; margin-bottom: 20px;">📦 Hyperviseurs & VMs</h3>
+                <ul style="text-align: left; line-height: 1.8; list-style-type: none; padding: 0;">
+                    <li>✔️ <strong>Proxmox VE & VMware :</strong> Installation et configuration d'hyperviseurs de type 1 (Bare-Metal).</li>
+                    <li>✔️ <strong>Gestion des ressources :</strong> Allocation dynamique de la RAM, des vCPU et gestion des disques virtuels (LVM, ZFS).</li>
+                    <li>✔️ <strong>Snapshots & Clones :</strong> Utilisation des clichés instantanés avant toute mise à jour critique pour permettre un retour en arrière rapide.</li>
+                    <li>✔️ <strong>Réseau Virtuel :</strong> Configuration de switchs virtuels et ponts réseau (Bridges) pour connecter les VMs au réseau physique.</li>
+                </ul>
+            </div>
+
+            <div class="card" style="border-top: 5px solid #2980b9;">
+                <h3 style="color: #2980b9; font-size: 1.6rem; margin-bottom: 20px;">🐳 Conteneurisation</h3>
+                <ul style="text-align: left; line-height: 1.8; list-style-type: none; padding: 0;">
+                    <li>✔️ <strong>Docker :</strong> Déploiement rapide de services isolés via des images (Hub Docker).</li>
+                    <li>✔️ <strong>Docker Compose :</strong> Orchestration de plusieurs conteneurs simultanés (ex: déploiement d'un serveur web + base de données en une seule commande).</li>
+                    <li>✔️ <strong>Persistance des données :</strong> Gestion des volumes Docker pour ne pas perdre les données lors de la destruction d'un conteneur.</li>
+                </ul>
+            </div>
+
+            <div class="card" style="border-top: 5px solid #16a085;">
+                <h3 style="color: #16a085; font-size: 1.6rem; margin-bottom: 20px;">📊 Services IT & Backup</h3>
+                <ul style="text-align: left; line-height: 1.8; list-style-type: none; padding: 0;">
+                    <li>✔️ <strong>GLPI :</strong> Déploiement du service pour la gestion de parc informatique (ITAM) et la gestion des tickets d'incidents (Helpdesk).</li>
+                    <li>✔️ <strong>Proxmox Backup Server (PBS) :</strong> Mon projet phare ! Mise en place de sauvegardes incrémentielles automatisées et dédupliquées pour les machines virtuelles.</li>
+                    <li>✔️ <strong>Supervision :</strong> Notions de monitoring pour surveiller l'état de santé du matériel et du réseau en temps réel.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; margin: 50px auto 0; text-align: left; background-color: #ffffff; border-left: 5px solid #2c3e50; padding: 30px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 0 8px 8px 0;">
+            <h4 style="color: #2c3e50; margin-top: 0; font-size: 1.4rem; margin-bottom: 15px;">💡 Ma vision de l'Infrastructure Virtuelle</h4>
+            <p style="margin-bottom: 15px; color: #444;">
+                Gérer un parc virtualisé demande de la rigueur pour éviter la "surcharge" des serveurs. Je m'appuie sur trois règles d'or :
+            </p>
+            <ul style="color: #444; margin-left: 20px;">
+                <li><strong>Ne jamais sur-allouer (Overprovisioning) :</strong> Je calcule toujours les ressources physiques disponibles avant d'attribuer de la RAM ou du CPU aux VMs pour éviter les crashs.</li>
+                <li><strong>La règle du 3-2-1 pour les backups :</strong> 3 copies des données, sur 2 supports différents, dont 1 hors site.</li>
+                <li><strong>L'isolation des services :</strong> Un service = une VM (ou un conteneur). Cela évite qu'une faille de sécurité sur un serveur web ne compromette le serveur de base de données.</li>
+            </ul>
+        </div>
+
+        <br><br>
+        <div style="text-align: center;">
+            <a href="index.html" class="btn btn-secondary">Retour à l'accueil</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - PAYA BELESCOT Gaëtan - Portfolio BTS SIO SISR</p>
+    </footer>
+
+    <script>
+        const stickers = ['💻', '🖥️', '💾', '⚙️', '🚀', '🛡️', '🛠️', '🌐', '🔋'];
+        document.addEventListener('click', function(e) {
+            const sticker = document.createElement('div');
+            sticker.classList.add('it-sticker');
+            const randomSticker = stickers[Math.floor(Math.random() * stickers.length)];
+            sticker.innerText = randomSticker;
+            sticker.style.left = (e.pageX - 15) + 'px';
+            sticker.style.top = (e.pageY - 15) + 'px';
+            document.body.appendChild(sticker);
+            setTimeout(() => { sticker.remove(); }, 1000);
+        });
+    </script>
+
+</body>
+</html>

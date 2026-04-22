@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compétences Systèmes - Portfolio Gaëtan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="index.html">⬅ Retour à l'accueil</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" style="margin-top: 50px;">
+        <h2>💻 Administration Système</h2>
+        <p style="max-width: 800px; margin: 0 auto 40px; font-size: 1.1rem; color: #555;">
+            L'administration système est au cœur de ma formation SISR. Au fil de mes projets et de mes stages, j'ai acquis une solide maîtrise des environnements Microsoft et Open Source, me permettant de déployer, configurer et maintenir des infrastructures complètes.
+        </p>
+
+        <div class="grid">
+            <div class="card" style="border-top: 5px solid #0078D6;">
+                <h3 style="color: #0078D6; font-size: 1.6rem; margin-bottom: 20px;">🪟 Environnement Windows</h3>
+                <ul style="text-align: left; line-height: 1.8; list-style-type: none; padding: 0;">
+                    <li>✔️ <strong>Active Directory (AD DS) :</strong> Création d'arborescences (OU), gestion des utilisateurs, groupes et ordinateurs.</li>
+                    <li>✔️ <strong>GPO (Stratégies de groupe) :</strong> Sécurisation des postes, déploiement de logiciels, restrictions d'accès (panneau de configuration, clés USB).</li>
+                    <li>✔️ <strong>Services Rôles :</strong> Configuration de serveurs DNS (zones directes/inverses), DHCP (étendues, réservations), et serveurs de fichiers (droits NTFS).</li>
+                    <li>✔️ <strong>Déploiement :</strong> Utilisation de WDS / MDT pour le clonage et le déploiement d'images Windows sur le parc.</li>
+                </ul>
+            </div>
+
+            <div class="card" style="border-top: 5px solid #E95420;">
+                <h3 style="color: #E95420; font-size: 1.6rem; margin-bottom: 20px;">🐧 Environnement GNU/Linux</h3>
+                <ul style="text-align: left; line-height: 1.8; list-style-type: none; padding: 0;">
+                    <li>✔️ <strong>Distributions :</strong> Maîtrise de Debian et Ubuntu Server (installation minimale, configuration réseau).</li>
+                    <li>✔️ <strong>Ligne de commande (CLI) :</strong> Navigation avancée, gestion des permissions (CHMOD, CHOWN), manipulation de fichiers.</li>
+                    <li>✔️ <strong>Services Web & BDD :</strong> Déploiement de serveurs LAMP (Linux, Apache, MySQL, PHP) ou Nginx.</li>
+                    <li>✔️ <strong>Sécurité & Accès :</strong> Configuration du pare-feu UFW/Iptables, sécurisation des accès distants (SSH avec clés RSA), gestion des logs.</li>
+                </ul>
+            </div>
+
+            <div class="card" style="border-top: 5px solid #8e44ad;">
+                <h3 style="color: #8e44ad; font-size: 1.6rem; margin-bottom: 20px;">⚙️ Scripting & Automatisation</h3>
+                <ul style="text-align: left; line-height: 1.8; list-style-type: none; padding: 0;">
+                    <li>✔️ <strong>PowerShell :</strong> Création de scripts pour automatiser la création d'utilisateurs dans l'Active Directory via un fichier CSV.</li>
+                    <li>✔️ <strong>Bash (Linux) :</strong> Scripts d'automatisation pour les sauvegardes nocturnes (fichiers et bases de données) avec planification CRON.</li>
+                    <li>✔️ <strong>Gestion des tâches :</strong> Surveillance de l'espace disque et alertes automatisées.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; margin: 50px auto 0; text-align: left; background-color: #ffffff; border-left: 5px solid #2c3e50; padding: 30px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 0 8px 8px 0;">
+            <h4 style="color: #2c3e50; margin-top: 0; font-size: 1.4rem; margin-bottom: 15px;">💡 Mon approche de l'Administration Système</h4>
+            <p style="margin-bottom: 15px; color: #444;">
+                Au-delà de la simple configuration technique, j'attache une grande importance aux bonnes pratiques du métier :
+            </p>
+            <ul style="color: #444; margin-left: 20px;">
+                <li><strong>Le principe de moindre privilège :</strong> Un utilisateur ne doit avoir accès qu'aux ressources strictement nécessaires à son travail.</li>
+                <li><strong>La documentation :</strong> Rédaction de procédures claires pour la DSI afin d'assurer la continuité de service.</li>
+                <li><strong>La tolérance aux pannes (PRA/PCA) :</strong> Anticiper les défaillances avec des systèmes de sauvegarde (comme Proxmox Backup Server) et de la redondance.</li>
+            </ul>
+        </div>
+
+        <br><br>
+        <div style="text-align: center;">
+            <a href="index.html" class="btn btn-secondary">Retour à l'accueil</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - PAYA BELESCOT Gaëtan - Portfolio BTS SIO SISR</p>
+    </footer>
+
+    <script>
+        const stickers = ['💻', '🖥️', '💾', '⚙️', '🚀', '🛡️', '🛠️', '🌐', '🔋'];
+        document.addEventListener('click', function(e) {
+            const sticker = document.createElement('div');
+            sticker.classList.add('it-sticker');
+            const randomSticker = stickers[Math.floor(Math.random() * stickers.length)];
+            sticker.innerText = randomSticker;
+            sticker.style.left = (e.pageX - 15) + 'px';
+            sticker.style.top = (e.pageY - 15) + 'px';
+            document.body.appendChild(sticker);
+            setTimeout(() => { sticker.remove(); }, 1000);
+        });
+    </script>
+
+</body>
+</html>
