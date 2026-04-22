@@ -13,16 +13,18 @@
         <ul class="nav-links">
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#profil">Profil & CV</a></li>
+            <li><a href="#diplomes">Diplômes</a></li>
+            <li><a href="#certifications">Certifications</a></li> 
             <li><a href="#competences">Compétences</a></li>
             <li><a href="#projets">Projets</a></li>
             <li><a href="#stages">Stages</a></li>
-            <li><a href="#veille">Veille Tech</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="veille.html">Veille Tech</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
     <header id="accueil" class="section">
-    <h1>Bonjour, je suis PAYA BELESCOT Gaëtan</h1>
+        <h1>Bonjour, je suis PAYA BELESCOT Gaëtan</h1>
         <h2>Étudiant en BTS SIO option SISR</h2>
         <p>Passionné par l'administration système, les réseaux et la cybersécurité.</p>
         <a href="#projets" class="btn">Découvrir mes projets</a>
@@ -31,87 +33,124 @@
     <section id="profil" class="section">
         <h2>Mon Profil</h2>
         <p>Actuellement en 2ème année de BTS SIO option Solutions d'Infrastructure, Systèmes et Réseaux au lycée SUZANNE VALADON à Limoges. Je prépare activement mon entrée dans le monde professionnel.</p>
+        <br>
+        <a href="bts-sio.html" class="btn">Découvrir le BTS SIO</a>
         <a href="cv.pdf" target="_blank" class="btn btn-secondary">Télécharger mon CV (PDF)</a>
+        
+        <a href="tableau de synthèse.pdf" target="_blank" class="btn" style="background-color: #8e44ad; color: white; margin-top: 10px; border-color: #8e44ad;">📊 Tableau de Synthèse E5</a>
     </section>
 
-    <section id="competences" class="section bg-light">
+    <section id="diplomes" class="section bg-light">
+        <h2>Mes Diplômes et Formations</h2>
+        <p style="max-width: 800px; margin: 0 auto 20px;">
+            Découvrez mon parcours scolaire, du Baccalauréat jusqu'à ma formation actuelle en BTS SIO option SISR.
+        </p>
+        <a href="diplomes.html" class="btn">Voir mon parcours détaillé</a>
+    </section>
+    
+    <section id="certifications" class="section">
+        <h2>Mes Certifications Informatiques</h2>
+        <p style="max-width: 800px; margin: 0 auto 20px;">
+            En complément de ma formation initiale, je valide des certifications reconnues par les professionnels du secteur pour attester de mes compétences techniques.
+        </p>
+        <a href="certifications.html" class="btn">Voir mes certifications détaillées</a>
+    </section>
+
+    <section id="competences" class="section">
         <h2>Mes Compétences Techniques</h2>
         <div class="grid">
             <div class="card">
                 <h3>Systèmes</h3>
                 <p>Windows Server (AD, DNS, DHCP), Linux (Debian, Ubuntu), Scripting (PowerShell, Bash).</p>
+                <a href="systeme.html" class="btn" style="margin-top: 15px; display: inline-block;">Détails Systèmes</a>
             </div>
             <div class="card">
                 <h3>Réseaux</h3>
                 <p>Adressage IP, Routage, Commutation (Cisco), VLANs, Pare-feu (pfSense).</p>
+                <a href="reseaux.html" class="btn" style="margin-top: 15px; display: inline-block;">Détails Réseaux</a>
             </div>
             <div class="card">
                 <h3>Virtualisation & Services</h3>
                 <p>VMware, VirtualBox, Proxmox, GLPI, Docker (bases).</p>
+                <a href="virtualisation.html" class="btn" style="margin-top: 15px; display: inline-block;">Détails Virtualisation</a>
             </div>
         </div>
     </section>
 
-    <section id="projets" class="section">
+    <section id="projets" class="section bg-light">
         <h2>Mes Projets (E4)</h2>
         <div class="grid">
             <div class="card">
-                <h3>Projet 1 : Déploiement backup server sur proxmox (PBS)</h3>
-                <p>Mise en place d'une backup server afin de sauvegader les vm.</p>
+                <h3>Projet 1 : Maison des ligues (M2L)</h3>
+                <p>Ce projet porte sur la conception et le déploiement de l'infrastructure réseau et système de la société Sport Assur, hébergée au sein de la Maison des Ligues de Lorraine (M2L)</p>
                 <a href="projet1.html" class="btn">Voir le détail du projet</a>
             </div>
             <div class="card">
-                <h3>Projet 2 : Architecture Réseau Sécurisée</h3>
-                <p>Configuration de switchs et routeurs Cisco, séparation des réseaux via VLANs et inter-routage.</p>
+                <h3>Projet 2 : Contexte CUB</h3>
+                <p>le but du projet cub est la mise en place d'un système Informatiques comme le dhcp,dns,pare-feu,centreon...</p>
                 <a href="projet2.html" class="btn">Voir le détail du projet</a>
             </div>
         </div>
     </section>
 
-    <section id="stages" class="section bg-light">
+    <section id="stages" class="section">
         <h2>Mes Stages</h2>
         <div class="grid">
             <div class="card">
-                <h3>Stage au lycée Maryse Bastié à limoges</h3>
-                <p><strong>Dates :</strong>année 2022/2024  </p>
+                <h3>Stage au lycée Maryse Bastié à Limoges</h3>
+                <p><strong>Dates :</strong> Années 2022/2024</p>
                 <ul>
-                    <li>CPAM.</li>
-                    <li>Arenne informatique.</li>
+                    <li>Arène informatique.</li>
                     <li>DSI université de Limoges</li>
                 </ul>
                 <br>
-                <a href="stage1.html" class="btn btn-secondary">Détails de ces stage</a>
+                <a href="stage1.html" class="btn btn-secondary">Détails de ces stages</a>
             </div>
 
             <div class="card">
-                <h3>Stage au Lycée Suzanne Valadon à Limoges </h3>
-                <p><strong>Dates :</strong> année 2024/2026</p>
+                <h3>Lycée Suzanne Valadon à Limoges</h3>
+                <p><strong>Dates :</strong> Années 2024/2026</p>
                 <ul>
                     <li>Tibco</li>
-                    <li>lycée Suzanne Valadon</li>
-                    
+                    <li>Lycée Suzanne Valadon</li>
                 </ul>
                 <br>
-                <a href="stage2.html" class="btn btn-secondary">Détails de ces stage</a>
+                <a href="stage2.html" class="btn btn-secondary">Détails de ces stages</a>
             </div>
         </div>
-    </section>
-
-    <section id="veille" class="section">
-        <h2>Veille Technologique</h2>
-        <p><strong>Thème :</strong> [Ex: L'évolution des ransomwares et les solutions de sauvegarde].</p>
-        <p>Ma démarche de veille s'appuie sur un outil feedly, en suivant des experts comme l'ANSSI ou CERT-FR.</p>
-    </section>
-
-    <section id="contact" class="section bg-dark">
-        <h2>Me Contacter</h2>
-        <p>Email : <a href="https://mail.google.com/mail/?view=cm&fs=1&to=payagaetan@gmail.com" target="_blank">payagaetan@gmail.com</a></p></a></p>
-        <p>LinkedIn : <a href="https://linkedin.com/in/tonprofil" target="_blank">Mon Profil LinkedIn</a></p>
     </section>
 
     <footer>
         <p>&copy; 2026 - PAYA BELESCOT Gaëtan - Portfolio BTS SIO SISR</p>
     </footer>
+
+    <script>
+        // Liste des emojis qui vont apparaître
+        const stickers = ['💻', '🖥️', '💾', '⚙️', '🚀', '🛡️', '🛠️', '🌐', '🔋'];
+
+        // Écouteur d'événement sur tout le document au clic
+        document.addEventListener('click', function(e) {
+            // Création de l'élément div pour le sticker
+            const sticker = document.createElement('div');
+            sticker.classList.add('it-sticker');
+
+            // Choix aléatoire d'un emoji
+            const randomSticker = stickers[Math.floor(Math.random() * stickers.length)];
+            sticker.innerText = randomSticker;
+
+            // Positionnement du sticker là où la souris a cliqué
+            sticker.style.left = (e.pageX - 15) + 'px';
+            sticker.style.top = (e.pageY - 15) + 'px';
+
+            // Ajout du sticker dans la page
+            document.body.appendChild(sticker);
+
+            // Suppression du sticker après 1 seconde (1000 millisecondes)
+            setTimeout(() => {
+                sticker.remove();
+            }, 1000);
+        });
+    </script>
 
 </body>
 </html>
