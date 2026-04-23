@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentations Cisco & Réseaux - Portfolio Gaëtan</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        .pdf-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            border-top: 4px solid #27ae60; /* Vert pour rappeler Cisco */
+        }
+        .pdf-card:hover {
+            transform: translateY(-5px);
+        }
+        .pdf-icon {
+            font-size: 40px;
+            color: #27ae60;
+            margin-bottom: 15px;
+        }
+        .pdf-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .pdf-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+            height: 40px; /* Aligne les boutons */
+            overflow: hidden;
+        }
+        .btn-view {
+            background-color: #27ae60;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .btn-view:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="index.html">⬅ Retour à l'accueil</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" style="margin-top: 50px;">
+        <h2>Documentations Techniques Réseaux</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+            Retrouvez ici l'ensemble de mes documentations d'architecture, de configuration et de protocoles réseaux (Cisco).
+        </p>
+
+        <div class="pdf-grid">
+            
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Access Lists Cisco (ACL)</h3>
+                <p>Découverte et configuration des listes de contrôle d'accès.</p>
+                <a href="accesslistscisco.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Le Protocole NAT</h3>
+                <p>Translation d'adresses réseaux pour l'accès vers l'extérieur.</p>
+                <a href="le-nat.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Le Protocole DHCP</h3>
+                <p>Configuration de l'attribution dynamique des adresses IP.</p>
+                <a href="le-protocole-dhcp.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Routage Inter-VLAN</h3>
+                <p>Mise en place du routage entre différents VLANs via des switchs.</p>
+                <a href="routage-inter-vlan-switchs.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Routage RIP et OSPF</h3>
+                <p>Protocoles de routage dynamique (Vecteur de distance / État de liens).</p>
+                <a href="routage-rip-et-ospf.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Protocole HSRP</h3>
+                <p>Tolérance de panne et redondance de la passerelle par défaut.</p>
+                <a href="protocolehsrp.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Serveur RADIUS</h3>
+                <p>Authentification centralisée pour la sécurité des accès réseaux.</p>
+                <a href="radius.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Routage IP Statique</h3>
+                <p>Configuration manuelle des tables de routage.</p>
+                <a href="routage-ip-statique.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Routes Flottantes</h3>
+                <p>Mise en place de routes statiques de secours (backup).</p>
+                <a href="routage-ip-statique-avec-des-routes-flottantes.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Spanning Tree (STP)</h3>
+                <p>Prévention des boucles réseaux dans les topologies commutées.</p>
+                <a href="spanningtree-stp.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>Les VLANs</h3>
+                <p>Création et gestion des réseaux locaux virtuels.</p>
+                <a href="vlan.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+            <div class="pdf-card">
+                <div class="pdf-icon">📄</div>
+                <h3>VLAN Trunk</h3>
+                <p>Configuration des liens Trunk (802.1Q) entre commutateurs.</p>
+                <a href="vlantrunk.pdf" target="_blank" class="btn-view">Voir le PDF</a>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="btn btn-secondary" style="background-color: #34495e;">Retour à l'accueil</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - PAYA BELESCOT Gaëtan - Portfolio BTS SIO SISR</p>
+    </footer>
+
+</body>
+</html>
