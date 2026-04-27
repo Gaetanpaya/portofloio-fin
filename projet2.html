@@ -52,7 +52,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
-        /* Style pour les boutons de documentation */
         .doc-buttons-container {
             display: flex;
             flex-wrap: wrap;
@@ -93,24 +92,23 @@
         <hr style="margin: 20px 0;">
         
         <h3>Contexte et Objectifs</h3>
-        <p>Dans le cadre du projet "CUB", mon objectif était de déployer, configurer et sécuriser l'ensemble des services vitaux nécessaires au bon fonctionnement du système d'information d'une entreprise. L'intégralité de cette maquette a été réalisée et virtualisée sur un environnement <strong>Proxmox VE</strong>, me permettant de gérer efficacement les ressources allouées à chaque machine virtuelle (VM) et conteneur (LXC).</p>
+        <p>Dans le cadre du projet "CUB", mon objectif était de déployer, configurer et sécuriser l'ensemble des services vitaux nécessaires au bon fonctionnement du système d'information d'une entreprise. L'intégralité de cette maquette a été réalisée et virtualisée sur un environnement <strong>Proxmox VE</strong>.</p>
         
         <div style="text-align: center; margin: 40px 0; padding: 20px; background-color: #ffffff; border: 1px dashed #bdc3c7; border-radius: 10px;">
             <h4 style="color: #2c3e50; margin-top: 0; margin-bottom: 15px;">🗺️ Topologie Réseau du Projet CUB</h4>
             <img src="cub.png" alt="Schéma de l'infrastructure CUB" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
         </div>
-        <br>
 
         <div class="infrastructure-container">
             <div class="infra-text">
                 <h3 style="color: #2c3e50; margin-top: 0;">💻 Vue d'ensemble de l'architecture</h3>
-                <p>La gestion de ce parc virtualisé m'a demandé une grande rigueur dans le nommage et l'adressage des machines. Sur l'hyperviseur cible (nœud <em>siohyp2</em>), j'ai déployé des serveurs sous distribution Linux (Debian) et Windows Server pour répondre aux besoins d'adressage, de résolution de noms et de supervision.</p>
+                <p>La gestion de ce parc virtualisé m'a demandé une grande rigueur dans le nommage et l'adressage des machines. Sur l'hyperviseur cible, j'ai déployé des serveurs sous distribution Linux (Debian) et Windows Server pour répondre aux besoins de l'entreprise.</p>
                 <p><strong>Parmi les machines déployées :</strong></p>
                 <ul style="line-height: 1.8;">
-                    <li>Des serveurs de rôles (DHCP, DNS, NTP, AD).</li>
-                    <li>Des outils de gestion de parc (GLPI).</li>
-                    <li>Des serveurs de supervision (Centreon / Zabbix).</li>
-                    <li>Des machines clientes de test pour valider le réseau.</li>
+                    <li>Des serveurs de rôles (AD DS, DHCP, DNS).</li>
+                    <li>Des outils de gestion de parc et de ticketing (GLPI).</li>
+                    <li>Des serveurs de supervision (Centreon).</li>
+                    <li>Des pare-feu pour le cloisonnement réseau (pfSense).</li>
                 </ul>
             </div>
             <div class="infra-image">
@@ -120,69 +118,66 @@
         </div>
 
         <h3>⚙️ Configuration des services clés</h3>
-        <p>Voici le détail technique des missions que j'ai réalisées sur les 4 piliers de cette infrastructure :</p>
+        <p>Voici le détail technique des missions que j'ai réalisées sur les piliers de cette infrastructure :</p>
 
         <div class="service-grid">
-            <div class="service-card" style="border-left-color: #27ae60;">
-                <h4>📡 Serveur DHCP (VM 131)</h4>
-                <p><strong>Objectif :</strong> Automatiser l'attribution des configurations réseau aux postes clients pour éviter les conflits d'IP.</p>
+            <div class="service-card" style="border-left-color: #34495e;">
+                <h4>🗄️ Active Directory (AD DS)</h4>
+                <p><strong>Objectif :</strong> Centraliser la gestion des identités, des ressources et de la sécurité du parc informatique.</p>
                 <ul style="padding-left: 20px; font-size: 0.95rem; color: #444;">
-                    <li>Configuration des étendues (scopes) pour définir la plage d'adresses IP distribuables.</li>
-                    <li>Paramétrage des options réseau envoyées aux clients (Passerelle par défaut, Serveur DNS).</li>
-                    <li>Mise en place de <strong>réservations statiques</strong> basées sur l'adresse MAC pour que les serveurs (comme GLPI ou Centreon) conservent toujours la même adresse IP tout en restant configurés en dynamique.</li>
+                    <li>Installation et promotion du contrôleur de domaine sous Windows Server.</li>
+                    <li>Structuration de l'annuaire via des <strong>Unités d'Organisation (OU)</strong> par services.</li>
+                    <li>Gestion des utilisateurs, des groupes de sécurité et des partages réseau.</li>
+                    <li>Mise en place de <strong>GPO (Group Policy Objects)</strong> pour automatiser la configuration des postes clients.</li>
+                </ul>
+            </div>
+
+            <div class="service-card" style="border-left-color: #27ae60;">
+                <h4>📡 Serveur DHCP</h4>
+                <p><strong>Objectif :</strong> Automatiser l'attribution des configurations réseau aux postes clients.</p>
+                <ul style="padding-left: 20px; font-size: 0.95rem; color: #444;">
+                    <li>Configuration des étendues (scopes) et des options réseau.</li>
+                    <li>Mise en place de réservations statiques basées sur les adresses MAC.</li>
                 </ul>
             </div>
 
             <div class="service-card" style="border-left-color: #9b59b6;">
-                <h4>🌐 Serveur DNS (VM 273)</h4>
-                <p><strong>Objectif :</strong> Assurer la résolution de noms de domaine au sein de l'entreprise (traduire un nom lisible en adresse IP).</p>
+                <h4>🌐 Serveur DNS</h4>
+                <p><strong>Objectif :</strong> Assurer la résolution de noms de domaine au sein de l'infrastructure.</p>
                 <ul style="padding-left: 20px; font-size: 0.95rem; color: #444;">
-                    <li>Création de la <strong>zone de recherche directe</strong> pour permettre aux clients de joindre les services internes via leur nom complet (FQDN).</li>
-                    <li>Création de la <strong>zone de recherche inversée</strong> pour des raisons de sécurité et d'audit (traduire une IP en nom).</li>
-                    <li>Configuration de redirecteurs (Forwarders) pour permettre l'accès à Internet si le nom n'est pas connu en local.</li>
+                    <li>Création des zones de recherche directe et inversée.</li>
+                    <li>Configuration des redirecteurs pour l'accès web externe.</li>
                 </ul>
             </div>
 
             <div class="service-card" style="border-left-color: #e74c3c;">
                 <h4>🛡️ Pare-feu & Routage</h4>
-                <p><strong>Objectif :</strong> Sécuriser le périmètre de l'infrastructure et cloisonner les différents réseaux locaux.</p>
+                <p><strong>Objectif :</strong> Sécuriser le périmètre et cloisonner les flux réseaux.</p>
                 <ul style="padding-left: 20px; font-size: 0.95rem; color: #444;">
-                    <li>Création de règles de filtrage strictes (ACL) pour bloquer par défaut tout le trafic non autorisé.</li>
-                    <li>Ouverture des flux spécifiques requis pour le bon fonctionnement des services (ports 80/443 pour le Web, port 53 pour le DNS, port 161 pour le SNMP).</li>
-                    <li>Mise en œuvre du <strong>NAT (Network Address Translation)</strong> permettant aux machines du réseau privé d'accéder à Internet.</li>
+                    <li>Création de règles de filtrage strictes (ACL) sur pfSense.</li>
+                    <li>Mise en œuvre du NAT pour l'accès internet sécurisé.</li>
                 </ul>
             </div>
 
             <div class="service-card" style="border-left-color: #f1c40f;">
-                <h4>📊 Supervision Centreon (VM 667)</h4>
-                <p><strong>Objectif :</strong> Surveiller l'état de santé du parc informatique en temps réel et anticiper les pannes.</p>
+                <h4>📊 Supervision Centreon</h4>
+                <p><strong>Objectif :</strong> Surveiller l'état de santé du parc en temps réel.</p>
                 <ul style="padding-left: 20px; font-size: 0.95rem; color: #444;">
-                    <li>Déploiement du serveur Centreon et ajout des hôtes à superviser dans l'interface web.</li>
-                    <li>Configuration du protocole <strong>SNMP</strong> sur les serveurs cibles pour remonter leurs informations.</li>
-                    <li>Mise en place de sondes pour surveiller la charge CPU, l'utilisation de la RAM, l'espace disque restant et la latence réseau (Ping).</li>
+                    <li>Configuration du protocole <strong>SNMP</strong> sur les serveurs cibles.</li>
+                    <li>Mise en place de sondes critiques (CPU, RAM, Disque, Services).</li>
                 </ul>
             </div>
         </div>
 
         <h3 style="margin-top: 50px; text-align: center; color: #2c3e50;">📄 Mes documentations techniques</h3>
-        <p style="text-align: center; color: #555;">Consultez mes procédures détaillées pour le déploiement de ces services :</p>
-        
         <div class="doc-buttons-container">
+            <a href="ad.html" target="_blank" class="btn-doc">🗄️ Procédure Active Directory</a>
             <a href="docdhcppage.html" target="_blank" class="btn-doc">📡 Procédure DHCP</a>
             <a href="DNS.html" target="_blank" class="btn-doc">🌐 Procédure DNS</a>
             <a href="docparefeu.html" target="_blank" class="btn-doc">🛡️ Règles Pare-feu</a>
             <a href="centreon.html" target="_blank" class="btn-doc">📊 Déploiement Centreon</a>
         </div>
-        <hr style="margin: 40px 0;">
 
-        <h3>Compétences SIO mobilisées</h3>
-        <ul>
-            <li>Administrer des systèmes et des réseaux.</li>
-            <li>Déployer des services (DHCP, DNS).</li>
-            <li>Sécuriser les accès et les communications.</li>
-            <li>Superviser l'infrastructure.</li>
-        </ul>
-        
         <br><br>
         <div style="text-align: center;">
             <a href="index.html" class="btn btn-secondary">Retour à l'accueil</a>
@@ -198,8 +193,7 @@
         document.addEventListener('click', function(e) {
             const sticker = document.createElement('div');
             sticker.classList.add('it-sticker');
-            const randomSticker = stickers[Math.floor(Math.random() * stickers.length)];
-            sticker.innerText = randomSticker;
+            sticker.innerText = stickers[Math.floor(Math.random() * stickers.length)];
             sticker.style.left = (e.pageX - 15) + 'px';
             sticker.style.top = (e.pageY - 15) + 'px';
             document.body.appendChild(sticker);
