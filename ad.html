@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Active Directory - Portfolio Gaëtan</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .doc-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .doc-section h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            border-left: 3px solid #3498db;
+            padding-left: 10px;
+        }
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            border-left: 4px solid #3498db;
+        }
+        ul {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="index.html">⬅ Retour à l'accueil</a></li>
+            <li><a href="projet2.html">⬅ Retour au Projet CUB</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" style="margin-top: 50px;">
+        <h2 style="color: #2c3e50; text-align: center;">DÉPLOIEMENT ACTIVE DIRECTORY (AD DS)</h2>
+        <p style="text-align: center; color: #555; max-width: 800px; margin: 0 auto 40px;">
+            Documentation technique détaillant l'installation, la structuration et la sécurisation du contrôleur de domaine sous Windows Server dans le cadre du projet CUB.
+        </p>
+
+        <div class="doc-section">
+            <h3>1. Prérequis & Préparation du Serveur</h3>
+            <p>Avant de promouvoir un serveur en tant que Contrôleur de Domaine, il est impératif de préparer l'environnement réseau et système pour éviter tout conflit futur.</p>
+            
+            <p class="step-title">Actions préliminaires :</p>
+            <ul>
+                <li><strong>Nommage :</strong> Renommer le serveur avec un nom clair (ex: <code>SRV-AD-CUB</code>) via les paramètres système.</li>
+                <li><strong>Adressage IP fixe :</strong> Configurer une adresse IP statique sur la carte réseau (ex: <code>192.168.10.10</code>).</li>
+                <li><strong>Configuration DNS :</strong> Faire pointer le serveur DNS primaire sur l'adresse de bouclage (<code>127.0.0.1</code>) ou sur lui-même, car l'AD a besoin de son propre service DNS pour fonctionner.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h3>2. Installation et Promotion du Rôle AD DS</h3>
+            <p>Le déploiement se fait via le Gestionnaire de Serveur (Server Manager).</p>
+
+            <p class="step-title">Étape 1 : Ajout des rôles</p>
+            <p>Dans le Gestionnaire de Serveur, cliquer sur <em>Ajouter des rôles et des fonctionnalités</em>. Sélectionner <strong>Services AD DS (Active Directory Domain Services)</strong>. Le système cochera automatiquement l'ajout du rôle DNS, indispensable à l'AD.</p>
+
+            <p class="step-title">Étape 2 : Promotion en Contrôleur de Domaine</p>
+            <p>Une fois l'installation terminée, cliquer sur le drapeau d'alerte jaune et sélectionner <em>"Promouvoir ce serveur en contrôleur de domaine"</em>.</p>
+            <ul>
+                <li>Choisir <strong>"Ajouter une nouvelle forêt"</strong> (puisqu'il s'agit du premier serveur).</li>
+                <li>Nom du domaine racine : <strong>cub.local</strong> (nom de domaine interne).</li>
+                <li>Définir le mot de passe <strong>DSRM</strong> (Mode de restauration des services d'annuaire), crucial en cas de crash de la base de données AD.</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>Vérification :</strong> Après le redémarrage automatique, le serveur affiche le nom du domaine à l'écran de connexion (ex: <code>CUB\Administrateur</code>), confirmant la réussite de la promotion.
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h3>3. Structuration de l'Annuaire (OU)</h3>
+            <p>Pour ne pas mélanger tous les utilisateurs et ordinateurs dans les dossiers par défaut, il faut utiliser l'outil <strong>Utilisateurs et ordinateurs Active Directory (dsa.msc)</strong> pour créer une hiérarchie.</p>
+
+            <p class="step-title">Création des Unités d'Organisation (OU)</p>
+            <p>J'ai créé des Unités d'Organisation (OU) pour refléter les différents services de l'entreprise. Cela permet de déléguer l'administration et d'appliquer des stratégies (GPO) ciblées.</p>
+<pre><code>CUB.local
+ ├── OU=Direction
+ │    ├── Utilisateurs
+ │    └── Ordinateurs
+ ├── OU=Informatique
+ │    ├── Utilisateurs
+ │    └── Ordinateurs
+ └── OU=Ressources_Humaines</code></pre>
+            
+            <p class="step-title">Gestion des Droits (Bonnes pratiques)</p>
+            <p>Les permissions sur les dossiers partagés de l'entreprise ne sont <strong>jamais</strong> données directement à un utilisateur. J'ai créé des <strong>Groupes de Sécurité Globaux</strong> (ex: <code>GG_Lecture_RH</code>) auxquels j'attribue les droits NTFS, puis j'ajoute les utilisateurs dans ces groupes.</p>
+        </div>
+
+        <div class="doc-section">
+            <h3>4. Sécurisation via les Stratégies de Groupe (GPO)</h3>
+            <p>Les GPO (Group Policy Objects) permettent d'automatiser la configuration des postes clients et de verrouiller l'environnement de travail pour des raisons de sécurité.</p>
+
+            <p class="step-title">Exemples de GPO déployées dans le contexte CUB :</p>
+            <ul>
+                <li><strong>Mappage de lecteur réseau :</strong> Connexion automatique du lecteur <code>S:</code> (dossier partagé commun) à l'ouverture de session de l'utilisateur.</li>
+                <li><strong>Sécurité des postes :</strong> Désactivation de l'accès au Panneau de configuration et à l'Invite de commandes (cmd) pour les utilisateurs standards (OU=Ressources_Humaines).</li>
+                <li><strong>Stratégie de mots de passe :</strong> Obligation d'avoir des mots de passe complexes (min. 12 caractères) et renouvellement tous les 90 jours (GPO "Default Domain Policy").</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>Commande utile :</strong> Sur un poste client (Windows 10/11) intégré au domaine, la commande <code>gpupdate /force</code> permet de forcer l'application immédiate des nouvelles GPO sans avoir à redémarrer.
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="projet2.html" class="btn btn-secondary">Retour au Projet CUB</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - PAYA BELESCOT Gaëtan - Portfolio BTS SIO SISR</p>
+    </footer>
+
+</body>
+</html>
